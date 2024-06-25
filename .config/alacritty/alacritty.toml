@@ -1,0 +1,20 @@
+import = [
+    "~/.config/alacritty/themes/themes/tokyo-night.toml"
+]
+
+[keyboard]
+bindings = [
+# { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "C", mods = "Control", action = "Copy" },
+{ key = "V", mods = "Control", action = "Paste"},
+]
+
+
+[window]
+dimensions = { columns = 70, lines = 20 }
+decorations = "Full"
+title = " "
+opacity = 0.95
+
+[cursor]
+thickness = 0.5
