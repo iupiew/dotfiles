@@ -1,5 +1,9 @@
+# "~/.config/alacritty/themes/themes/kanagawa_dragon.toml
+# "~/.config/alacritty/themes/themes/snazzy.toml
+# "~/.config/alacritty/themes/themes/iterm.toml
+
 import = [
-    "~/.config/alacritty/themes/themes/smoooooth.toml"
+    "~/.config/alacritty/themes/themes/kanagawa_dragon.toml"
 ]
 
 [keyboard]
@@ -11,10 +15,10 @@ bindings = [
 
 
 [window]
-dimensions = { columns = 70, lines = 20 }
+dimensions = { columns = 80, lines = 24 }
 decorations = "Full"
-title = " "
-opacity = 1
+title = ""
+opacity = 0.95
 
 [cursor]
 thickness = 0.15
