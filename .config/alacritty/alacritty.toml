@@ -17,8 +17,10 @@ bindings = [
 [window]
 dimensions = { columns = 80, lines = 24 }
 decorations = "Full"
-title = ""
-opacity = 0.95
+startup_mode = "Windowed"
+opacity = 1
+blur = true
+position = { x = 600, y = 400 }
 
 [cursor]
 thickness = 0.15

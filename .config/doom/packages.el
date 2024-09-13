@@ -47,3 +47,5 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
+(package! aiken-mode
+  :recipe (:host github :repo "aiken-lang/aiken-mode"))
