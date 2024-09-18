@@ -49,3 +49,4 @@
 ;; (unpin! t)
 (package! aiken-mode
   :recipe (:host github :repo "aiken-lang/aiken-mode"))
+(package! vue-mode)
