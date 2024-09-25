@@ -11,6 +11,7 @@ bindings = [
 # { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
 { key = "C", mods = "Control", action = "Copy" },
 { key = "V", mods = "Control", action = "Paste"},
+{ key = "F11", action = "ToggleFullscreen"},
 ]
 
 
