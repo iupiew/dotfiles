@@ -1,0 +1,5 @@
+require 'iupiew.set'
+require 'iupiew.keymaps'
+require 'iupiew.auto'
+require 'iupiew.lazy'
+require 'iupiew.ui'

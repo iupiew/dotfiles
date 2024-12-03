@@ -3,7 +3,7 @@
 # "~/.config/alacritty/themes/themes/iterm.toml
 
 import = [
-    "~/.config/alacritty/themes/themes/kanagawa_dragon.toml"
+    "~/.config/alacritty/themes/themes/rose-pine-dawn.toml"
 ]
 
 [keyboard]
@@ -25,3 +25,6 @@ position = { x = 600, y = 400 }
 
 [cursor]
 thickness = 0.15
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.6"
