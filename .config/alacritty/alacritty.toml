@@ -3,7 +3,7 @@
 # "~/.config/alacritty/themes/themes/snazzy.toml
 # "~/.config/alacritty/themes/themes/iterm.toml
 
-import = ["~/.config/alacritty/themes/themes/rose-pine-dawn.toml"]
+# import = ["~/.config/alacritty/themes/themes/nightfox.toml"]
 
 [keyboard]
 bindings = [

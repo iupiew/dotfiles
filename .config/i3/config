@@ -15,9 +15,13 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Ubuntu Mono 8
 
+# set $rose_pine_pink "#eb6f92"
+# set $rose_pine_cream "#f4ede8"
+# set $rose_pine_bg "#21202e"
+
 set $rose_pine_pink "#eb6f92"
 set $rose_pine_cream "#f4ede8"
-set $rose_pine_bg "#21202e"
+set $rose_pine_bg "#1c1c1c"
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -62,6 +66,12 @@ bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
+
+# screenshot
+bindsym $mod+Ctrl+S exec --no-startup-id scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png
+
+# Set the default keyboard layout to US and Russian, toggle with Alt+Shift
+exec --no-startup-id setxkbmap -layout us,ru -option "grp:cltl_shift_toggle"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
