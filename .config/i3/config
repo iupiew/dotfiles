@@ -1,8 +1,7 @@
-# ~/.config/i3/config
-
 set $mod Mod4
-#font pango:Ubuntu Mono 8, "Font Awesome 6 Free" 8
-font pango:JetBrainsMono Nerd Font 10, "Font Awesome 6 Free" 10
+font pango:Hack Nerd Font 10, "Font Awesome 6 Free" 10
+
+# Autostart desktop entries
 exec --no-startup-id dex --autostart --environment i3
 
 set $base           #eaeaea
@@ -17,64 +16,48 @@ set $rose           #ebbcba
 set $pine           #3e8fb0
 set $foam           #9ccfd8
 set $iris           #c4a7e7
-set $light
 
 default_border pixel 0
 default_floating_border pixel 0
 
-#                       border          background      text            indicator
-client.focused          $muted          $base           $text           $iris
-client.focused_inactive $overlay        $surface        $subtle         $overlay
-client.unfocused        $surface        $surface        $muted          $surface
-client.urgent           $love           $love           $base           $love
-client.placeholder      $base           $base           $text           $base
-client.background       $base
+# Window Colors              Border          Background      Text            Indicator
+client.focused              $muted          $base           $text           $iris
+client.focused_inactive     $overlay        $surface        $subtle         $overlay
+client.unfocused            $surface        $surface        $muted          $surface
+client.urgent               $love           $love           $base           $love
+client.placeholder          $base           $base           $text           $base
+client.background           $base
 
-bar {
-    position top
-    status_command py3status -c ~/.config/i3status/config
-    tray_output primary
-    tray_padding 2
-    colors {
-        background $base
-        statusline $text
-        separator  $overlay
-        focused_workspace  $base   $muted   $base
-        active_workspace   $foam   $overlay $text
-        inactive_workspace $base $base $subtle
-        urgent_workspace   $love   $love   $base
-    }
-    font pango:JetBrainsMono Nerd Font 9, "Font Awesome 6 Free" 9
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-}
-
-### KEY BINDINGS ###
-# Essential commands
+# Essential i3 commands
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
 
-# Applications
-bindsym $mod+Return exec alacritty
-bindsym $mod+d exec rofi -show drun
-bindsym $mod+Ctrl+s exec scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png
-
-# Window management
+# Window controls
 bindsym $mod+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
-# Movement
+# Focus movement (vim-like)
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Theme toggle
-bindsym Shift+t exec ~/.config/i3status/scripts/theme_toggle.sh
+# Layout management
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
 
-# Workspaces
+
+bindsym $mod+Return exec alacritty
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Ctrl+s exec scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png
+#bindsym $mod+Shift+t exec ~/.config/i3status/scripts/theme_toggle.sh
+
 set $ws1 "1"
 set $ws2 "2" 
 set $ws3 "3"
@@ -86,7 +69,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# Switch workspaces
+# Switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -98,7 +81,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# Move containers
+# Move container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -110,25 +93,15 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-### SYSTEM CONTROLS ###
-# Volume
+# Volume control
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 
-# Screen Lock
+# Screen lock
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c $base
 
-### LAYOUT MANAGEMENT ###
-# Split orientation
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
-
-#bindsym --release button1 exec --no-startup-id ~/.config/i3status/calendar_popup.sh
-
-# Resize mode
 mode "resize" {
     bindsym h resize shrink width 10px
     bindsym j resize grow height 10px
@@ -141,9 +114,23 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+# Window gaps
+gaps inner 5
+gaps outer 2
+
+# System tray applications
 exec --no-startup-id nm-applet
+
+# Wallpaper
 exec --no-startup-id nitrogen --restore
 
+# Keyboard layout switching
 exec --no-startup-id setxkbmap -layout us,ru -option "grp:shift_caps_toggle,grp_led:scroll"
 bindsym Shift+Caps_Lock exec notify-send "Layout: $(setxkbmap -query | awk '/layout/{print $2}')"
 exec --no-startup-id while true; do xkb-switch -p; sleep 1; done | while read -r; do pkill -SIGUSR1 i3status; done
+
+# Compositor and system settings
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+exec_always --no-startup-id xset r rate 300 40
+

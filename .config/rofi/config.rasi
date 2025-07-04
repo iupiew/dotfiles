@@ -1,6 +1,6 @@
 @import "default"
 * {
-	bg: #121212;
+	bg: #191724;
 	cur: #1f1d2e;
 	fgd: #e0def4;
 	cmt: #6e6a86;
@@ -9,7 +9,7 @@
 	ora: #ebbcba;
 	pur: #c4a7e7;
 	red: #eb6f92;
-	yel: #eaeaea;
+	yel: #6e6a86;
 	font: "Hack Nerd Font 18";
 	foreground: @fgd;
 	background: @bg;
@@ -30,7 +30,6 @@
 	
 }
 #mainbox {
-	border:  0;
 	padding: 8;
 }
 #message {
