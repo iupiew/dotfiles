@@ -57,6 +57,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Ctrl+s exec scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png
 #bindsym $mod+Shift+t exec ~/.config/i3status/scripts/theme_toggle.sh
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 set $ws1 "1"
 set $ws2 "2" 
