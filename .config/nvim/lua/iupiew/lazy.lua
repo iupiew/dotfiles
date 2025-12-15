@@ -10,27 +10,39 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-  {
-    'rose-pine/neovim',
-    config = function()
-      vim.cmd 'colorscheme rose-pine-dawn'
-    end,
-  },
-
   -- {
-  --   'EdenEast/carbonfox.nvim',
+  --   'rose-pine/neovim',
   --   config = function()
-  --     vim.cmd 'colorscheme nightfox'
+  --     require('rose-pine').setup {
+  --       palette = {
+  --         main = {
+  --           base = '#18191a',
+  --           overlay = '#363738',
+  --         },
+  --       },
+  --     }
+  --     vim.cmd 'colorscheme rose-pine'
   --   end,
   -- },
-  -- {
-  --   'ThePrimeagen/harpoon',
-  --   branch = 'harpoon2',
-  --   dependencies = { 'nvim-lua/plenary.nvim' },
-  -- },
+
+  {
+    'EdenEast/nightfox.nvim',
+    config = function()
+      vim.cmd 'colorscheme terafox'
+    end,
+  },
+  --
+
   {
     'folke/zen-mode.nvim',
-    opts = {},
+    opts = {
+      window = {
+        backdrop = 0.95,
+      },
+      plugins = {
+        twilight = { enabled = true },
+      },
+    },
   },
   {
     'prichrd/netrw.nvim',
@@ -209,7 +221,7 @@ require('lazy').setup({
               'pyright', -- Python
               'clangd', -- C/C++
               'rust_analyzer', -- Rust
-              'tsserver', -- TypeScript/JavaScript
+              'typescript-language-server', -- TypeScript/JavaScript
 
               -- Formatters and linters
               'stylua', -- Lua formatter
@@ -353,10 +365,10 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -415,7 +427,28 @@ require('lazy').setup({
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
+        -- Replace the Tab mapping in your nvim-cmp configuration with this:
         mapping = cmp.mapping.preset.insert {
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item

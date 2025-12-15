@@ -51,6 +51,8 @@ bindsym $mod+l focus right
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+Shift+h split horizontal
+bindsym $mod+Shift+v split vertical
 
 
 bindsym $mod+Return exec alacritty
@@ -127,12 +129,12 @@ exec --no-startup-id nm-applet
 # Wallpaper
 exec --no-startup-id nitrogen --restore
 
-# Keyboard layout switching
-exec --no-startup-id setxkbmap -layout us,ru -option "grp:shift_caps_toggle,grp_led:scroll"
-bindsym Shift+Caps_Lock exec notify-send "Layout: $(setxkbmap -query | awk '/layout/{print $2}')"
+# Keyboard layout switching  
+exec --no-startup-id setxkbmap -layout us,ru -option "grp_led:scroll"
+bindsym $mod+Caps_Lock exec --no-startup-id ~/.config/i3/scripts/toggle_layout.sh
 exec --no-startup-id while true; do xkb-switch -p; sleep 1; done | while read -r; do pkill -SIGUSR1 i3status; done
 
-# Compositor and system settings
+exec --no-startup-id while true; do xkb-switch -p; sleep 1; done | while read -r; do pkill -SIGUSR1 i3status; done# Compositor and system settings
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id xset r rate 300 40
 

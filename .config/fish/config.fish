@@ -39,3 +39,5 @@ fish_add_path /home/iupiew/go/bin          # <- ADD THIS LINE
 set -gx PATH /home/iupiew/.nvm/versions/node/v18.20.8/bin $PATH
 set -gx PATH /home/iupiew/.nvm/versions/node/v22.16.0/bin $PATH
 set -gx PATH $HOME/.avm/bin $PATH
+export PATH="/home/iupiew/.local/bin:$PATH"
+set -gx PATH $HOME/.local/share/solana/install/active_release/bin $PATH
