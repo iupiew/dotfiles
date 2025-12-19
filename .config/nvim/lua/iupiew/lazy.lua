@@ -28,6 +28,28 @@ require('lazy').setup({
   {
     'EdenEast/nightfox.nvim',
     config = function()
+      require('nightfox').setup {
+        options = {
+          -- Your theme customization options
+          transparent = false,
+          terminal_colors = true,
+          dim_inactive = false,
+          styles = {
+            comments = 'italic',
+            keywords = 'bold',
+            types = 'italic,bold',
+          },
+        },
+        palettes = {
+          terafox = {
+            -- Override the background color
+            bg1 = '#1e1e1e', -- Main background
+          },
+        },
+        specs = {},
+        groups = {},
+      }
+
       vim.cmd 'colorscheme terafox'
     end,
   },

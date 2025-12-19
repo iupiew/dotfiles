@@ -1,14 +1,15 @@
+# Disable fish greeting
 if status is-interactive
     set fish_greeting
 end
+
+# Disable autosuggestions
 set -U fish_autosuggestion_enabled 0
 
+# Dotfiles management alias
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-export PATH="/home/iupiew/.local/bin:$PATH"
-export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
-export PATH="/home/iupiew/.local/share/solana/install/active_release/bin:$PATH"
-
+# Custom prompt
 function fish_prompt
     set -l user_host (set_color brblack)"$USER@"(hostname|cut -d . -f 1)(set_color normal)
     set -l current_dir (set_color magenta)(prompt_pwd)(set_color normal)
@@ -17,17 +18,19 @@ function fish_prompt
     echo -n -s (set_color brwhite)"❯ "(set_color normal)
 end
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/iupiew/.ghcup/bin $PATH
+# PATH configuration
+fish_add_path -a $HOME/.local/bin
+fish_add_path -a $HOME/.cabal/bin
+fish_add_path -a $HOME/.ghcup/bin
+fish_add_path -a $HOME/.cargo/bin
+fish_add_path -a $HOME/.foundry/bin
+fish_add_path -a $HOME/.nvm/bin
+fish_add_path -a $HOME/.local/share/solana/install/active_release/bin
+fish_add_path -a $HOME/.nvm/versions/node/v22.16.0/bin
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+# Bun
+set -gx BUN_INSTALL "$HOME/.bun"
+fish_add_path -a $BUN_INSTALL/bin
 
-fish_add_path -a /home/iupiew/.foundry/bin
-fish_add_path /home/iupiew/.cargo/bin/
-fish_add_path /home/iupiew/.nvm/bin/
-
-set -gx PATH /home/iupiew/.nvm/versions/node/v18.20.8/bin $PATH
-set -gx PATH /home/iupiew/.nvm/versions/node/v22.16.0/bin $PATH
-set -gx PATH $HOME/.avm/bin $PATH
-set -gx PATH $HOME/.local/share/solana/install/active_release/bin $PATH
+# GHCup (Haskell)
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
