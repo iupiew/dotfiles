@@ -138,3 +138,4 @@ exec --no-startup-id while true; do xkb-switch -p; sleep 1; done | while read -r
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id xset r rate 300 40
 
+
