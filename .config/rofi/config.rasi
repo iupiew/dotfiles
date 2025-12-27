@@ -1,29 +1,32 @@
 @import "default"
 * {
-	bg: #191724;
-	cur: #1f1d2e;
-	fgd: #e0def4;
-	cmt: #6e6a86;
-	cya: #9ccfd8;
-	grn: #31748f;
-	ora: #ebbcba;
-	pur: #c4a7e7;
-	red: #eb6f92;
-	yel: #6e6a86;
+	bg: #2b2b2b;
+	cur: #293e40;
+	fgd: #e6eaea;
+	cmt: #cbd9d8;
+	cya: #a1cdd8;
+	grn: #7aa4a1;
+	ora: #fda47f;
+	pur: #ad5c7c;
+	red: #e85c51;
+	yel: #ff8349;
+	blu: #5a93aa;
+	
 	font: "Hack Nerd Font 18";
+	
 	foreground: @fgd;
 	background: @bg;
-	active-background: @cmt;
+	active-background: @cur;
 	urgent-background: @red;
-	selected-background: @active-background;
+	selected-background: @grn;
 	selected-urgent-background: @urgent-background;
 	selected-active-background: @active-background;
-	separatorcolor: @active-background;
-	bordercolor: @yel;
+	separatorcolor: @cmt;
+	bordercolor: @cya;
 }
 #window {
 	background-color: @background;
-	border:           2;
+	border:           0;
 	border-radius:    9;
 	border-color:     @bordercolor;
 	padding:          8;
