@@ -23,10 +23,10 @@ fish_add_path -a $HOME/.local/bin
 fish_add_path -a $HOME/.cabal/bin
 fish_add_path -a $HOME/.ghcup/bin
 fish_add_path -a $HOME/.cargo/bin
+fish_add_path -a $HOME/.deno/bin
 fish_add_path -a $HOME/.foundry/bin
 fish_add_path -a $HOME/.nvm/bin
 fish_add_path -a $HOME/.local/share/solana/install/active_release/bin
-fish_add_path -a $HOME/.nvm/versions/node/v22.16.0/bin
 
 # Bun
 set -gx BUN_INSTALL "$HOME/.bun"
